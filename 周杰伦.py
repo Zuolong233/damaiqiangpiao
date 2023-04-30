@@ -88,7 +88,7 @@ class Concert:
             print('###开始进行日期及票价选择###')
             while self.driver.title.find("确认订单") == -1:
                 try:
-                    buybutton = self.driver.find_element(By.CLASS_NAME, 'buybtn').text
+                    buybutton = self.driver.find_element(By.CLASS_NAME, '-linkn').text
                     if buybutton == '提交缺货登记':
                         self.status = 2  # 没有进行更改操作
                         self.driver.get(target_url)  # 刷新页面 继续执行操作
@@ -96,7 +96,7 @@ class Concert:
                         # 点击立即预定
                         self.driver.find_element('buybtn').click()
                         self.status = 3
-                    elif buybutton == '立即购买':
+                    elif buybutton == '不，立即购买':
                         self.driver.find_element(By.CLASS_NAME, 'buybtn').click()
                         self.status = 4
                     elif buybutton == '选座购买':
